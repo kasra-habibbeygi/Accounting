@@ -1,0 +1,181 @@
+@import '../partials/variable';
+
+@font-face {
+    font-family: $tf;
+    src: url(../../font/Roboto-Thin.ttf);
+}
+
+@font-face {
+    font-family: $nf;
+    src: url(../../font/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: $lf;
+    src: url(../../font/Roboto-Light.ttf);
+}
+
+@font-face {
+    font-family: $bf;
+    src: url(../../font/Roboto-Bold.ttf);
+}
+
+@font-face {
+    font-family: $pf;
+    src: url(../../font/Vazir.ttf);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'normal_font', 'persian_font';
+}
+
+body,
+html {
+    overflow-x: hidden;
+    font-family: 'normal_font', 'persian_font';
+}
+
+body {
+    background-color: #21283E;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ebebeb;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(197, 197, 197);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(85, 94, 129);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+form {
+    width: 100%;
+
+    .btn {
+        width: 100%;
+        border-radius: 50px;
+        border: 0px;
+        background-color: $mc;
+        color: white;
+        padding: 13px 0px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $mch;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .input_group {
+        width: 100%;
+        position: relative;
+
+        &.main {
+            input {
+                padding-left: 20px;
+                border-radius: 5px;
+                background-color: #3e4762;
+                height: 38px;
+            }
+
+            label {
+                color: #f2f2f2;
+                margin-bottom: 8px;
+                display: block;
+                font-family: $lf;
+                letter-spacing: 1px;
+                font-size: 0.8rem;
+            }
+
+            textarea {
+                width: 100%;
+                border: 0px;
+                background-color: #3e4762;
+                color: white;
+                border-radius: 5px;
+                height: 150px;
+                margin-bottom: 20px;
+                padding: 10px 20px;
+                font-family: $nf;
+                font-size: 0.9rem;
+                resize: none;
+
+                &::placeholder {
+                    color: #afb2ba;
+                    font-family: $nf;
+                    letter-spacing: 0.5px;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        input {
+            width: 100%;
+            border: 0px;
+            background-color: #2C3247;
+            color: white;
+            border-radius: 50px;
+            height: 42px;
+            margin-bottom: 20px;
+            padding-left: 50px;
+            font-family: $nf;
+            font-size: 0.9rem;
+
+            &::placeholder {
+                color: #afb2ba;
+                font-family: $nf;
+                letter-spacing: 0.5px;
+            }
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        i {
+            position: absolute;
+            left: 20px;
+            top: 13px;
+            color: #7b808f;
+        }
+    }
+}
+
+.h3__header {
+    color: #d9d9d9;
+    font-family: $lf;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+}
+
+.h3__small_header {
+    color: #ffffff4d;
+    letter-spacing: 1px;
+    margin-top: 8px;
+    display: block;
+}
