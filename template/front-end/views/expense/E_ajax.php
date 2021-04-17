@@ -14,6 +14,7 @@
         $hour = $main -> safePOST('hour');
         $minute = $main -> safePOST('minute');
         $description = $main -> safePOST('description');
+        $action_type = (int)$main -> safePOST('action-type');
 
         // check invalid number
         $C_spend =  $main -> numericInput($spend , 'float') == NULL ? 'invalid_num' : $spend ; 
@@ -23,8 +24,10 @@
         $C_minute =  $main -> numericInput($minute , 'int') == NULL ? 'invalid_num' : $minute ; 
         $C_hour =  $main -> numericInput($hour , 'int') == NULL ? 'invalid_num' : $hour ; 
 
+        // echo $action_type;
+
         // form validation
-        if($title == '' || $spend == '' || $year == '' || $month == '' || $day == '' || $hour == '' || $minute == '')
+        if($title == '' || $spend == '' || $year == '' || $month == '' || $day == '' || $hour == '' || $minute == '' || $action_type == 2)
             echo 'empty-input';
         
         else if(strlen($title) >= 60)
@@ -56,7 +59,7 @@
             $user_id = $_SESSION['user_login'];
             $date = $year . '-' . $month . '-' . $day;
             $time = $hour . ':' . $minute; 
-            $I_Q = "INSERT INTO `expenses` VALUES ('NULL' , '$user_id' , '$title' , '$spend' , '$date' , '$time' , '$description')";
+            $I_Q = "INSERT INTO `expenses` VALUES ('NULL' , '$user_id' , '$title' , '$action_type' , '$spend' , '$date' , '$time' , '$description')";
             $I_result = $main -> query($I_Q);
             
             if($I_result > 0)

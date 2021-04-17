@@ -1,6 +1,8 @@
 @import '../partials/variable';
 @import '../partials/mixin';
 @import '../partials/error';
+@import '../partials/table';
+@import '../partials/checkbox';
 
 .main_field {
     width: 85%;
@@ -10,7 +12,7 @@
     padding: 30px 30px;
 
     .add_expensses_field {
-        width: 650px;
+        width: 500px;
         height: max-content;
         padding: 25px;
         background-color: #2F374F;
@@ -20,6 +22,11 @@
 
         form {
             margin-top: 30px;
+
+            .optional_text {
+                color: $mc;
+                font-size: 0.7rem;
+            }
 
             .chose__data {
                 display: flex;
@@ -42,7 +49,7 @@
                 }
             }
 
-            .chose__time{
+            .chose__time {
                 display: flex;
                 align-items: center;
                 color: rgb(170, 170, 170);
@@ -61,6 +68,19 @@
                         margin-right: 0px;
                     }
                 }
+            }
+
+            .checkbox_field {
+                display: flex;
+                align-items: center;
+                margin-bottom: 15px;
+
+                div {
+                    &:first-child {
+                        margin-right: 20px;
+                    }
+                }
+
             }
 
             .Sub__info {
@@ -84,4 +104,73 @@
         border-radius: 5px;
         box-shadow: 0 0 10px 0 rgb(4 2 2 / 20%);
     }
+}
+
+.text_limited.TLW_150 {
+    max-width: 150px;
+    margin: auto;
+}
+
+.table {
+    tbody {
+        tr {
+            td {
+                &:nth-child(2) {
+                    width: 170px;
+
+                    div {
+                        font-family: $lf !important;
+                    }
+                }
+
+                &:nth-child(3) {
+                    width: 170px;
+                    font-family: $nf !important;
+                }
+
+                .option_group {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    button {
+                        width: 30px;
+                        height: 30px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: #3E4762;
+                        border: 0;
+                        border-radius: 2px;
+                        cursor: pointer;
+
+                        &:hover{
+                            background: #697495;
+                        }
+
+                        &:nth-child(2){
+                            margin: 0px 5px;
+                        }
+
+                        i {
+                            color: rgb(255, 255, 255);
+                            font-size: 0.9rem ;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.CB__no__label span:first-child:before {
+    width: 10px !important;
+    height: 10px !important;
+    position: relative;
+    left: -5px;
+    top: 2px;
+}
+
+.inp-cbx:checked+.CB__no__label span:first-child:before {
+    transform: scale(5.5);
 }

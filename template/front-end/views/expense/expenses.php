@@ -2,6 +2,8 @@
 
     require_once '../../../../init.php';
 
+    $mian -> expenses();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +31,7 @@
 
     <section class="main_field">
         <div class="add_expensses_field">
-            <h3 class="h3__header">Daily Expenses</h3>
+            <h3 class="h3__header">Add Expenses</h3>
             <small class="h3__small_header">Add new daily expensess</small>
 
             <form action="" method="POST" autocomplete="off">
@@ -37,14 +39,39 @@
                     <label for="title">Title</label>
                     <input type="text" id="title">
                 </div>
+                <div class="input_group main checkbox_field">
+                    <div>
+                        <input class="inp-cbx" id="CB__1" type="radio" style="display: none" name="action_type">
+                        <label class="cbx" for="CB__1">
+                            <span>
+                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                </svg>
+                            </span>
+                            <span>Expense</span>
+                        </label>
+                    </div>
+                    <div>
+                        <input class="inp-cbx" id="CB__2" type="radio" style="display: none" name="action_type">
+                        <label class="cbx" for="CB__2">
+                            <span>
+                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                </svg>
+                            </span>
+                            <span>Income</span>
+                        </label>
+                    </div>
+                </div>
                 <div class="input_group main">
-                    <label for="spend">Amount spent</label>
+                    <label for="spend">Spend amount</label>
                     <input type="text" id="spend">
                 </div>
                 <div class="input_group main chose__data">
                     <div>
-                        <label for="day">Day</label>
-                        <input type="text" id="day">
+                        <label for="year">Year</label>
+                        <input type="text" id="year">
+
                     </div>
                     /
                     <div>
@@ -53,30 +80,121 @@
                     </div>
                     /
                     <div>
-                        <label for="year">Year</label>
-                        <input type="text" id="year">
+                        <label for="day">Day</label>
+                        <input type="text" id="day">
                     </div>
                 </div>
                 <div class="input_group main chose__time">
                     <div>
-                        <label for="hour">hour</label>
+                        <label for="hour">Hour</label>
                         <input type="text" id="hour">
                     </div>
                     :
                     <div>
-                        <label for="minute">minute</label>
+                        <label for="minute">Minute</label>
                         <input type="text" id="minute">
                     </div>
                 </div>
                 <div class="input_group main">
-                    <label for="description">Descriptiom</label>
+                    <label for="description">Descriptiom <span class="optional_text">(Optional)</span></label>
                     <textarea type="text" id="description"></textarea>
                 </div>
                 <button class="btn Sub__info" type="button">Submit information</button>
             </form>
 
         </div>
-        <div class="expenses_table"></div>
+        <div class="expenses_table">
+            <h3 class="h3__header">Daily Expenses Table</h3>
+            <small class="h3__small_header">You can see all your expenses in the table below</small>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <div>
+                                <input class="inp-cbx" id="CB_all" type="checkbox" style="display: none"
+                                    name="action_type">
+                                <label class="cbx CB__no__label" for="CB_all">
+                                    <span>
+                                        <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                        </svg>
+                                    </span>
+                                </label>
+                            </div>
+                        </th>
+                        <th>Titile</th>
+                        <th>Spend Amount</th>
+                        <th>Data</th>
+                        <th>Time</th>
+                        <th>Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div>
+                                <input class="inp-cbx" id="CBR_1" type="checkbox" style="display: none"
+                                    name="action_type">
+                                <label class="cbx CB__no__label" for="CBR_1">
+                                    <span>
+                                        <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                        </svg>
+                                    </span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text_limited TLW_150">
+                                salam salam
+                            </div>
+                        </td>
+                        <td class="Negative">- 120.000.000.000</td>
+                        <td>1400.30.30</td>
+                        <td>23:59</td>
+                        <td>
+                            <div class="option_group">
+                                <button><i class="fal fa-info"></i></button>
+                                <button><i class="fal fa-pencil-alt"></i></button>
+                                <button><i class="fal fa-trash-alt"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                <input class="inp-cbx" id="CBR_1" type="checkbox" style="display: none"
+                                    name="action_type">
+                                <label class="cbx CB__no__label" for="CBR_1">
+                                    <span>
+                                        <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                        </svg>
+                                    </span>
+                                </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text_limited TLW_150">
+                                salam salam
+                            </div>
+                        </td>
+                        <td class="Positive">+ 120.000.000.000</td>
+                        <td>1400.30.30</td>
+                        <td>23:59</td>
+                        <td>
+                            <div class="option_group">
+                                <button><i class="fal fa-info"></i></button>
+                                <button><i class="fal fa-pencil-alt"></i></button>
+                                <button><i class="fal fa-trash-alt"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
     </section>
 
     <script src="../../assets/js/general/jquery.js"></script>

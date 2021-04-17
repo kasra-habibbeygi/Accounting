@@ -26,6 +26,12 @@
 
         }
 
+        public function expenses(){
+
+            
+
+        }
+
     }
 
 ?>

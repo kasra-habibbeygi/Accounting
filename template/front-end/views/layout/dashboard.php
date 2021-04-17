@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 
     if(!$main -> checkLogin())
     $main -> redirect('../login/login.php?msg=access-denied');
@@ -48,4 +48,4 @@
         </li>
     </ul>
 
-</aside>
+</aside> -->

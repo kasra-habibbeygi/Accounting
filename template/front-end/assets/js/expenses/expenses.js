@@ -8,10 +8,19 @@ $('.Sub__info').click(function () {
     let hour = $('#hour').val().trim();
     let minute = $('#minute').val().trim();
     let description = $('#description').val().trim();
+    let action_type = 2;
 
-    let query = `CW=AE&title=${title}&spend=${spend}&year=${year}&month=${month}&day=${day}&hour=${hour}&minute=${minute}&description=${description}`
+    if ($('#CB__1').is(":checked"))
+        action_type = 0
+
+    else if ($('#CB__2').is(":checked"))
+        action_type = 1;
+
+    let query = `CW=AE&title=${title}&spend=${spend}&year=${year}&month=${month}&day=${day}&hour=${hour}&minute=${minute}&description=${description}&action-type=${action_type}`
 
     $.post('../../views/expense/e_ajax.php', query, function (result) {
+
+        // alert(result)
 
         if (result == 'empty-input')
             AWE('Please enter all inputs');
@@ -26,7 +35,7 @@ $('.Sub__info').click(function () {
             AWE('The amount spent can not be more than 12 digits');
 
         else if (result == 'NAN')
-            AWE('Amount spend , date and time must be a number');
+            AWE('spend amount , date and time must be a number');
 
         else if (result == 'invalid-date')
             AWE('The date entered is incorrect');
@@ -43,20 +52,12 @@ $('.Sub__info').click(function () {
         else if (result == 'insert-denied')
             AWE('Your request has encountered a problem')
 
-        else if (result == 'insert-success') {
-
-            ASE('Your expenses were successfully added');
-            $('#title').val('');
-            $('#spend').val('');
-            $('#year').val('');
-            $('#month').val('');
-            $('#day').val('');
-            $('#hour').val('');
-            $('#minute').val('');
-            $('#description').val('');
-
-        }
+        else if (result == 'insert-success')
+            window.location.href = 'expenses.php?msg=insert-success';
 
     })
 
 });
+
+if($('.error_handler').hasClass('insert-success'))
+    ASE('You have been logged in successfully');

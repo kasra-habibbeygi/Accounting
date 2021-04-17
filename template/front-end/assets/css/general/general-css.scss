@@ -179,3 +179,9 @@ form {
     margin-top: 8px;
     display: block;
 }
+
+.text_limited{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}

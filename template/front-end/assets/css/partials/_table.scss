@@ -1,0 +1,45 @@
+.table{
+    width: 100%;
+    margin-top: 30px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-align: center;
+    border-collapse: collapse;
+
+    thead{
+        tr{
+            border-bottom: 1px solid #646e8d78;
+
+            th{
+                color: #F2F2F2;
+                font-weight: normal;
+                padding: 12px 0px;
+            }
+        }
+    }
+
+    tbody{
+        tr{
+            border-bottom: 1px solid #646e8d78;
+
+            &:last-child{
+                border-bottom: none;
+            }
+
+            td{
+                padding: 15px 0px;
+                color: #F2F2F2;
+                font-size: 0.85rem;
+                font-family: $lf ;
+            }
+
+            .Negative{
+                color: #F84960;
+            }
+
+            .Positive{
+                color: #02BE75;
+            }
+        }
+    }
+}
