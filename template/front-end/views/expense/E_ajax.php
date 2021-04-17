@@ -24,8 +24,6 @@
         $C_minute =  $main -> numericInput($minute , 'int') == NULL ? 'invalid_num' : $minute ; 
         $C_hour =  $main -> numericInput($hour , 'int') == NULL ? 'invalid_num' : $hour ; 
 
-        // echo $action_type;
-
         // form validation
         if($title == '' || $spend == '' || $year == '' || $month == '' || $day == '' || $hour == '' || $minute == '' || $action_type == 2)
             echo 'empty-input';
@@ -56,6 +54,7 @@
 
         else{
 
+            // insert expenses
             $user_id = $_SESSION['user_login'];
             $date = $year . '-' . $month . '-' . $day;
             $time = $hour . ':' . $minute; 
@@ -70,6 +69,20 @@
 
         }
 
-    }
+    // select expenses row and response to js for show details
+    }else if($CW = 'MI'){
+
+        $data_id = (int)$main -> safePOST('data-id');
+
+        $MI_select = "SELECT * FROM `expenses` WHERE id = '$data_id'";
+        $MIS_send = $main -> query($MI_select);
+        $result = mysqli_fetch_assoc($MIS_send);
+        $spend = number_format($result['spend']);
+
+        $arr = array('title' => $result['title'] , 'spend' => $spend , "date" => $result['date'] , 'time' => $result['time'] , 'description' => $result['description']);
+
+        echo json_encode($arr);
+
+    }    
 
 ?>

@@ -2,7 +2,7 @@
 
     require_once '../../../../init.php';
 
-    $mian -> expenses();
+    $expenses_result = $main -> expenses();
 
 ?>
 <!DOCTYPE html>
@@ -107,95 +107,107 @@
             <h3 class="h3__header">Daily Expenses Table</h3>
             <small class="h3__small_header">You can see all your expenses in the table below</small>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            <div>
-                                <input class="inp-cbx" id="CB_all" type="checkbox" style="display: none"
-                                    name="action_type">
-                                <label class="cbx CB__no__label" for="CB_all">
-                                    <span>
-                                        <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </svg>
-                                    </span>
-                                </label>
-                            </div>
-                        </th>
-                        <th>Titile</th>
-                        <th>Spend Amount</th>
-                        <th>Data</th>
-                        <th>Time</th>
-                        <th>Option</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div>
-                                <input class="inp-cbx" id="CBR_1" type="checkbox" style="display: none"
-                                    name="action_type">
-                                <label class="cbx CB__no__label" for="CBR_1">
-                                    <span>
-                                        <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </svg>
-                                    </span>
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="text_limited TLW_150">
-                                salam salam
-                            </div>
-                        </td>
-                        <td class="Negative">- 120.000.000.000</td>
-                        <td>1400.30.30</td>
-                        <td>23:59</td>
-                        <td>
-                            <div class="option_group">
-                                <button><i class="fal fa-info"></i></button>
-                                <button><i class="fal fa-pencil-alt"></i></button>
-                                <button><i class="fal fa-trash-alt"></i></button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <input class="inp-cbx" id="CBR_1" type="checkbox" style="display: none"
-                                    name="action_type">
-                                <label class="cbx CB__no__label" for="CBR_1">
-                                    <span>
-                                        <svg width="12px" height="10px" viewbox="0 0 12 10">
-                                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                                        </svg>
-                                    </span>
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="text_limited TLW_150">
-                                salam salam
-                            </div>
-                        </td>
-                        <td class="Positive">+ 120.000.000.000</td>
-                        <td>1400.30.30</td>
-                        <td>23:59</td>
-                        <td>
-                            <div class="option_group">
-                                <button><i class="fal fa-info"></i></button>
-                                <button><i class="fal fa-pencil-alt"></i></button>
-                                <button><i class="fal fa-trash-alt"></i></button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <?php
+                $is_exist = mysqli_fetch_assoc($expenses_result);
+                if($is_exist == NULL){
+                    ?>
+                        <div class="empty_table">
+                            No items to display !
+                        </div>
+                    <?php
+                }else{
+                    ?>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div>
+                                            <input class="inp-cbx" id="CB_all" type="checkbox" style="display: none"
+                                                name="action_type">
+                                            <label class="cbx CB__no__label" for="CB_all">
+                                                <span>
+                                                    <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                        <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                    </svg>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </th>
+                                    <th>Titile</th>
+                                    <th>Spend Amount</th>
+                                    <th>Data</th>
+                                    <th>Time</th>
+                                    <th>Option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    mysqli_data_seek($expenses_result , 0);
+                                    while($rows = $main -> getRow($expenses_result)){
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    <div>
+                                                        <input class="inp-cbx" id="<?php echo $rows['id']?>" type="checkbox" style="display: none"
+                                                            name="action_type">
+                                                        <label class="cbx CB__no__label" for="<?php echo $rows['id']?>">
+                                                            <span>
+                                                                <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                                                    <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                                                                </svg>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="text_limited TLW_150">
+                                                        <?php echo $rows['title']?>
+                                                    </div>
+                                                </td>
+                                                <td class="<?php echo $rows['action_type'] == 0 ? 'Negative' : 'Positive'?>">
+                                                    <?php echo $rows['action_type'] == 0 ? '-' : '+'?> 
+                                                    <?php echo number_format($rows['spend'])?> T
+                                                </td>
+                                                <td><?php echo $rows['date']?></td>
+                                                <td>
+                                                    <?php 
+                                                        $time_arr = explode(':' , $rows['time']);
+                                                        unset($time_arr[2]);
+                                                        echo implode(':' , $time_arr);
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <div class="option_group" data-id="<?php echo $rows['id']?>">
+                                                        <button class="more_detail"><i class="fal fa-info"></i></button>
+                                                        <button><i class="fal fa-pencil-alt"></i></button>
+                                                        <button><i class="fal fa-trash-alt"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                    }                    
+                                ?>
+                            </tbody>
+                        </table>
+                    <?php
+                }
+            ?>
 
         </div>
     </section>
+
+    <!-- more information modal -->
+    <div class="MIM">
+        <div class="modal_main_field">
+            <div class="content">
+            
+                <h3 class="h3__header">More information</h3>
+                <small class="h3__small_header">You can see all the information recorded in the selected row</small>
+                <hr>
+
+            </div>
+        </div>
+    </div>
 
     <script src="../../assets/js/general/jquery.js"></script>
     <script src="../../assets/js/custom/error.js"></script>

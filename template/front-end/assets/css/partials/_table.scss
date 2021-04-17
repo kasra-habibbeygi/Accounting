@@ -34,12 +34,22 @@
             }
 
             .Negative{
-                color: #F84960;
+                color: $R_color;
             }
 
             .Positive{
-                color: #02BE75;
+                color: $G_color;
             }
         }
     }
+}
+
+.empty_table{
+    width: 100%;
+    padding: 24px;
+    border-radius: 5px;
+    background-color: #3d465e;
+    text-align: center;
+    color: #dfdfdf;
+    margin-top: 50px;
 }

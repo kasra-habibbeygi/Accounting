@@ -28,7 +28,8 @@
 
         public function expenses(){
 
-            
+            $expenses_select_Q = "SELECT * FROM `expenses` ORDER BY id DESC";
+            return $this -> query($expenses_select_Q);
 
         }
 

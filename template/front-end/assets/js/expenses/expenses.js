@@ -1,3 +1,4 @@
+// add new expenses
 $('.Sub__info').click(function () {
 
     let title = $('#title').val().trim();
@@ -55,9 +56,65 @@ $('.Sub__info').click(function () {
         else if (result == 'insert-success')
             window.location.href = 'expenses.php?msg=insert-success';
 
-    })
+    });
 
 });
 
+// if new expenses add successfully alert will be show 
 if($('.error_handler').hasClass('insert-success'))
     ASE('You have been logged in successfully');
+
+// more detail modal
+$('.more_detail').click(function(){
+
+   let data_id = $(this).parent().attr('data-id');
+   let query = `CW=MI&data-id=${data_id}`;
+
+    $.post('../../views/expense/e_ajax.php' , query , function(result){
+
+        // render ajax respond in temp and append in html
+        let info = $.parseJSON(result);        
+        let description = info.description == '' ? '-' : info.description ;
+
+        let temp =`
+        <div class="detail_field">
+
+            <div class="DF_box">
+                <p class="title">Title</p>
+                <p class="info">${info.title}</p>
+            </div>
+            <div class="DF_box">
+                <p class="title">Spend Amount</p>
+                <p class="info Positive">${info.spend} T</p>
+            </div>
+            <div class="DF_box">
+                <p class="title">Total Money</p>
+                <p class="info Positive">-</p>
+            </div>
+            <div class="DF_box">
+                <p class="title">Total money after spend</p>
+                <p class="info Positive">-</p>
+            </div>
+            <div class="DF_box">
+                <p class="title">Description</p>
+                <p class="info Positive">${description}</p>
+            </div>
+            <button class="close_MIM_modal">Close</button>
+
+        </div>
+        `
+        $('.MIM .content .detail_field').remove();
+        $('.MIM .content').append(temp);
+
+    });    
+
+    // fade in and fade out modal
+    $('.MIM').fadeIn();
+
+    $(document).on('click' , '.close_MIM_modal' , function(){
+
+        $('.MIM').fadeOut();
+
+    });
+
+});

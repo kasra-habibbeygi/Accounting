@@ -9,7 +9,7 @@
     margin-left: 15%;
     display: flex;
     justify-content: center;
-    padding: 30px 30px;
+    padding: 20px 30px;
 
     .add_expensses_field {
         width: 500px;
@@ -144,17 +144,17 @@
                         border-radius: 2px;
                         cursor: pointer;
 
-                        &:hover{
+                        &:hover {
                             background: #697495;
                         }
 
-                        &:nth-child(2){
+                        &:nth-child(2) {
                             margin: 0px 5px;
                         }
 
                         i {
                             color: rgb(255, 255, 255);
-                            font-size: 0.9rem ;
+                            font-size: 0.9rem;
                         }
                     }
                 }
@@ -173,4 +173,80 @@
 
 .inp-cbx:checked+.CB__no__label span:first-child:before {
     transform: scale(5.5);
+}
+
+.MIM {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.596);
+    display: none;
+
+    .modal_main_field {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .content {
+            width: 500px;
+            padding: 35px;
+            border-radius: 10px;
+            background-color: #2F374F;
+
+            hr{
+                border: 0;
+                border-bottom: 1px solid #3f465a;
+                margin-top: 11px;
+            }
+
+            .detail_field {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+
+                .DF_box {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 20px;
+
+                    .title {
+                        color: #7f8fbc;
+                        font-size: 0.9rem;
+                        letter-spacing: 1px;
+                    }
+
+                    .info {
+                        color: rgb(209, 209, 209);
+                        font-size: 1rem;
+                        margin-top: 5px;
+                        line-height: 23px;
+                        word-break: break-word !important;
+                        word-wrap: break-word !important
+                    }
+
+                }
+            }
+
+            .close_MIM_modal{
+                width: 100%;
+                border-radius: 50px;
+                background-color: $mc;
+                color: white;
+                border: 0px;
+                padding: 10px 0px;
+                margin-top: 30px;
+                font-size: 1.1rem;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: $mch;
+                }
+            }
+        }
+    }
 }
