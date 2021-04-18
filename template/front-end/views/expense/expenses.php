@@ -180,7 +180,7 @@
                                                     <div class="option_group" data-id="<?php echo $rows['id']?>">
                                                         <button class="more_detail"><i class="fal fa-info"></i></button>
                                                         <button><i class="fal fa-pencil-alt"></i></button>
-                                                        <button><i class="fal fa-trash-alt"></i></button>
+                                                        <button class="delete_row"><i class="fal fa-trash-alt"></i></button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -209,8 +209,26 @@
         </div>
     </div>
 
+    <!-- delete modal -->
+    <div class="DRM">
+        <div class="delete_main_field">
+            <div class="content">
+                
+                <p>Are you sure you want to delete this row?</p>
+                <div class="D_btn_group">
+                    <a>Delete</a>
+                    <button type="button" class="close_delete_modal">Cancel</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+
     <script src="../../assets/js/general/jquery.js"></script>
     <script src="../../assets/js/custom/error.js"></script>
+    <script src="../../assets/js/custom/logout.js"></script>
     <script src="../../assets/js/expenses/expenses.js"></script>
 </body>
 

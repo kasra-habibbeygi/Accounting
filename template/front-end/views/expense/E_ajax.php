@@ -79,7 +79,7 @@
         $result = mysqli_fetch_assoc($MIS_send);
         $spend = number_format($result['spend']);
 
-        $arr = array('title' => $result['title'] , 'spend' => $spend , "date" => $result['date'] , 'time' => $result['time'] , 'description' => $result['description']);
+        $arr = array('title' => $result['title'] , 'action_type' => $result['action_type'] , 'spend' => $spend , "date" => $result['date'] , 'time' => $result['time'] , 'description' => $result['description']);
 
         echo json_encode($arr);
 

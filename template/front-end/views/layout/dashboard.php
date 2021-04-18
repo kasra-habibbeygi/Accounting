@@ -10,7 +10,8 @@
 
     }
 
-?>
+    require_once 'logout.php';
+?> 
 
 <aside class="dashboard">
     <h1>notelock</h1>
@@ -41,10 +42,10 @@
             </a>
         </li>
         <li>
-            <a href="?logout=1">
+            <button class="logout__btn">
                 <i class="fad fa-sign-out"></i>
                 Logout
-            </a>
+            </button>
         </li>
     </ul>
 

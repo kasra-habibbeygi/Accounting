@@ -75,6 +75,8 @@ $('.more_detail').click(function(){
         // render ajax respond in temp and append in html
         let info = $.parseJSON(result);        
         let description = info.description == '' ? '-' : info.description ;
+        let mark = info.action_type == '0' ? '-' : '+' ; 
+        let spend_color = mark == '-' ? 'Negative' : 'Positive' ;
 
         let temp =`
         <div class="detail_field">
@@ -85,19 +87,19 @@ $('.more_detail').click(function(){
             </div>
             <div class="DF_box">
                 <p class="title">Spend Amount</p>
-                <p class="info Positive">${info.spend} T</p>
+                <p class="info ${spend_color}">${mark} ${info.spend} T</p>
             </div>
             <div class="DF_box">
                 <p class="title">Total Money</p>
-                <p class="info Positive">-</p>
+                <p class="info">-</p>
             </div>
             <div class="DF_box">
                 <p class="title">Total money after spend</p>
-                <p class="info Positive">-</p>
+                <p class="info">-</p>
             </div>
             <div class="DF_box">
                 <p class="title">Description</p>
-                <p class="info Positive">${description}</p>
+                <p class="info">${description}</p>
             </div>
             <button class="close_MIM_modal">Close</button>
 
@@ -118,3 +120,18 @@ $('.more_detail').click(function(){
     });
 
 });
+
+$('.delete_row').click(function(){
+
+    $('.DRM').fadeIn();
+
+    let locaton = $(this).parent().attr('data-id')
+    $('.DRM .D_btn_group a').attr('href' , `?${locaton}`);
+
+    $('.close_delete_modal').click(function(){
+
+        $('.DRM').fadeOut();
+
+    })
+
+})

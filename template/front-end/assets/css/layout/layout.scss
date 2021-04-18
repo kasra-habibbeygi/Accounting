@@ -1,6 +1,7 @@
 @import '../partials/variable';
 @import '../partials/mixin';
 @import '../partials/error';
+@import '../partials/logout';
 
 .dashboard {
     width: 15%;
@@ -70,7 +71,7 @@
         li {
             width: 100%;
 
-            a {
+            a , button{
                 color: rgb(238, 238, 238);
                 text-decoration: none;
                 width: 100%;
@@ -95,10 +96,17 @@
                 }
             }
 
+            button{
+                border: 0;
+                background-color: transparent;
+                text-align: left;
+                cursor: pointer;
+            }
+
         }
 
         .active {
-            a {
+            a{
                 i {
                     color: $mc !important;
                 }

@@ -29,6 +29,7 @@
 
     <script src="../../assets/js/general/jquery.js"></script>
     <script src="../../assets/js/custom/error.js"></script>
+    <script src="../../assets/js/custom/logout.js"></script>
     <script src="../../assets/js/index/index.js"></script>
 </body>
 

@@ -181,7 +181,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.596);
+    z-index: 1000;
+    background-color: $moal_bg;
     display: none;
 
     .modal_main_field {
@@ -197,7 +198,7 @@
             border-radius: 10px;
             background-color: #2F374F;
 
-            hr{
+            hr {
                 border: 0;
                 border-bottom: 1px solid #3f465a;
                 margin-top: 11px;
@@ -232,7 +233,7 @@
                 }
             }
 
-            .close_MIM_modal{
+            .close_MIM_modal {
                 width: 100%;
                 border-radius: 50px;
                 background-color: $mc;
@@ -243,10 +244,85 @@
                 font-size: 1.1rem;
                 cursor: pointer;
 
-                &:hover{
+                &:hover {
                     background-color: $mch;
                 }
             }
         }
     }
+}
+
+.DRM {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: $moal_bg;
+    display: none;
+
+    .delete_main_field {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .content {
+            width: 500px;
+            padding: 35px;
+            border-radius: 10px;
+            background-color: #2F374F;
+
+            p {
+                text-align: center;
+                color: #fff;
+                font-size: 1.6rem;
+                margin-bottom: 31px;
+            }
+
+            .D_btn_group {
+                display: flex;
+
+                button {
+                    width: 100%;
+                    border-radius: 50px;
+                    border: 0px;
+                    padding: 10px 0px;
+                    color: white;
+                    background-color: $mc;
+                    font-size: 1rem;
+                    cursor: pointer;
+                }
+
+                a {
+                    margin-right: 10px;
+                    background-color: #ff0052;
+                    width: 100%;
+                    border-radius: 50px;
+                    border: 0px;
+                    padding: 10px 0px;
+                    color: white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-decoration: none;
+                    font-size: 1rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+.Negative {
+    color: $R_color !important;
+}
+
+.Positive {
+    color: $G_color !important;
 }
