@@ -2,7 +2,7 @@
 $('.Sub__info').click(function () {
 
     let title = $('#title').val().trim();
-    let spend = $('#spend').val().trim();
+    let spend = $('#spend').val().trim().replace(/,/g, '');
     let year = $('#year').val().trim();
     let month = $('#month').val().trim();
     let day = $('#day').val().trim();
@@ -61,30 +61,32 @@ $('.Sub__info').click(function () {
 });
 
 // if new expenses add successfully alert will be show 
-if($('.error_handler').hasClass('insert-success'))
+if ($('.error_handler').hasClass('insert-success'))
     ASE('You have been logged in successfully');
 
-if($('.error_handler').hasClass('delete-success'))
+if ($('.error_handler').hasClass('delete-success'))
     ASE('The desired row was successfully removed');
 
 
 
 
 // more detail modal
-$('.more_detail').click(function(){
+$('.more_detail').click(function () {
 
-   let data_id = $(this).parent().attr('data-id');
-   let query = `CW=MI&data-id=${data_id}`;
+    let data_id = $(this).parent().attr('data-id');
+    let query = `CW=MI&data-id=${data_id}`;
 
-    $.post('../../views/expense/e_ajax.php' , query , function(result){
+    $.post('../../views/expense/e_ajax.php', query, function (result) {
 
         // render ajax respond in temp and append in html
-        let info = $.parseJSON(result);        
-        let description = info.description == '' ? '-' : info.description ;
-        let mark = info.action_type == '0' ? '-' : '+' ; 
-        let spend_color = mark == '-' ? 'Negative' : 'Positive' ;
+        let info = $.parseJSON(result);
+        let description = info.description == '' ? '-' : info.description;
+        let mark = info.action_type == '0' ? '-' : '+';
+        let spend_color = mark == '-' ? 'Negative' : 'Positive';
+        let balance = info.balance;
+        let after_spend = info.action_type == '0' ? parseInt(balance) - parseInt(info.spend) : parseInt(balance) + parseInt(info.spend);
 
-        let temp =`
+        let temp = `
         <div class="detail_field">
 
             <div class="DF_box">
@@ -92,16 +94,20 @@ $('.more_detail').click(function(){
                 <p class="info">${info.title}</p>
             </div>
             <div class="DF_box">
+                <p class="title">Date and Time</p>
+                <p class="info">${info.date} / ${info.time}</p>
+            </div>
+            <div class="DF_box">
                 <p class="title">Spend Amount</p>
-                <p class="info ${spend_color}">${mark} ${info.spend} T</p>
+                <p class="info ${spend_color}">${mark} ${Separator(info.spend)} T</p>
             </div>
             <div class="DF_box">
                 <p class="title">Total Money</p>
-                <p class="info">-</p>
+                <p class="info">${Separator(balance)}</p>
             </div>
             <div class="DF_box">
                 <p class="title">Total money after spend</p>
-                <p class="info">-</p>
+                <p class="info">${Separator(after_spend)}</p>
             </div>
             <div class="DF_box">
                 <p class="title">Description</p>
@@ -114,12 +120,12 @@ $('.more_detail').click(function(){
         $('.MIM .content .detail_field').remove();
         $('.MIM .content').append(temp);
 
-    });    
+    });
 
     // fade in and fade out modal
     $('.MIM').fadeIn();
 
-    $(document).on('click' , '.close_MIM_modal' , function(){
+    $(document).on('click', '.close_MIM_modal', function () {
 
         $('.MIM').fadeOut();
 
@@ -128,17 +134,44 @@ $('.more_detail').click(function(){
 });
 
 // open delete modal
-$('.delete_row').click(function(){
+$('.delete_row').click(function () {
 
     $('.DRM').fadeIn();
 
     let locaton = $(this).parent().attr('data-id')
-    $('.DRM .D_btn_group a').attr('href' , `?del-row=${locaton}`);
+    $('.DRM .D_btn_group a').attr('href', `?del-row=${locaton}`);
 
-    $('.close_delete_modal').click(function(){
+    $('.close_delete_modal').click(function () {
 
         $('.DRM').fadeOut();
 
     })
 
-})
+});
+
+// when user type and left spend input , comma will be added to number
+$('#spend').change(function () {
+
+    let num = $(this).val().replace(/,/g, '');
+    $(this).val(Separator(num));
+
+});
+
+// number separator
+function Separator(num) {
+
+    var str = num.toString().split('.');
+
+    if (str[0].length >= 4) {
+
+        str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+
+    }
+
+    if (str[1] && str[1].length >= 4) {
+
+        str[1] = str[1].replace(/(\d{3})/g, '$1 ');
+    }
+
+    return str.join('.');
+}

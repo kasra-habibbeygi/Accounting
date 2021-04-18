@@ -56,9 +56,11 @@
 
             // insert expenses
             $user_id = $_SESSION['user_login'];
+            $user_info = $main -> user_info();
+            $wallet_balance = $user_info['wallet_balance'];
             $date = $year . '-' . $month . '-' . $day;
             $time = $hour . ':' . $minute; 
-            $I_Q = "INSERT INTO `expenses` VALUES ('NULL' , '$user_id' , '$title' , '$action_type' , '$spend' , '$date' , '$time' , '$description')";
+            $I_Q = "INSERT INTO `expenses` VALUES ('NULL' , '$user_id' , '$title' , '$action_type' , '$spend' , '$wallet_balance' , '$date' , '$time' , '$description')";
             $I_result = $main -> query($I_Q);
             
             // update user wallet balance
@@ -92,9 +94,10 @@
         $MI_select = "SELECT * FROM `expenses` WHERE id = '$data_id'";
         $MIS_send = $main -> query($MI_select);
         $result = mysqli_fetch_assoc($MIS_send);
-        $spend = number_format($result['spend']);
+        $spend = $result['spend'];
+        $balance = $result['wallet_balance'];
 
-        $arr = array('title' => $result['title'] , 'action_type' => $result['action_type'] , 'spend' => $spend , "date" => $result['date'] , 'time' => $result['time'] , 'description' => $result['description']);
+        $arr = array('title' => $result['title'] , 'action_type' => $result['action_type'] , 'spend' => $spend , "date" => $result['date'] , 'time' => $result['time'] , 'description' => $result['description'] , 'balance' => $balance);
 
         echo json_encode($arr);
 

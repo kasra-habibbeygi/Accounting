@@ -4,11 +4,11 @@
 
     $expenses_result = $main -> expenses_select('select-row');
 
-    // if(isset($_GET['del-row'])){
+    if(isset($_GET['del-row'])){
 
-        print_r($main -> expenses_delete('single')) ;
+        $delete_result = $main -> expenses_delete('single');
 
-    // }
+    }
 
 ?>
 <!DOCTYPE html>

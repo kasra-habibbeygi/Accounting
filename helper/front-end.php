@@ -73,6 +73,7 @@
                     $this -> redirect('?msg=delete-success');
 
             }
+            
         }
 
     }
