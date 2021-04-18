@@ -64,6 +64,12 @@ $('.Sub__info').click(function () {
 if($('.error_handler').hasClass('insert-success'))
     ASE('You have been logged in successfully');
 
+if($('.error_handler').hasClass('delete-success'))
+    ASE('The desired row was successfully removed');
+
+
+
+
 // more detail modal
 $('.more_detail').click(function(){
 
@@ -121,12 +127,13 @@ $('.more_detail').click(function(){
 
 });
 
+// open delete modal
 $('.delete_row').click(function(){
 
     $('.DRM').fadeIn();
 
     let locaton = $(this).parent().attr('data-id')
-    $('.DRM .D_btn_group a').attr('href' , `?${locaton}`);
+    $('.DRM .D_btn_group a').attr('href' , `?del-row=${locaton}`);
 
     $('.close_delete_modal').click(function(){
 

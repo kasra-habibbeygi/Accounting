@@ -61,8 +61,23 @@
             $I_Q = "INSERT INTO `expenses` VALUES ('NULL' , '$user_id' , '$title' , '$action_type' , '$spend' , '$date' , '$time' , '$description')";
             $I_result = $main -> query($I_Q);
             
-            if($I_result > 0)
+            // update user wallet balance
+            if($I_result > 0){
+
+                $user_info = $main ->user_info();
+                $user_id = $user_info['id'];
+                
+                if($action_type == 0)
+                    $update_balance = $user_info['wallet_balance'] - $spend;
+
+                else if($action_type == 1)
+                    $update_balance = $user_info['wallet_balance'] + $spend;
+
+                $U_B_Q = "UPDATE `users` SET wallet_balance = '$update_balance' WHERE id = '$user_id'";
+                $U_result = $main -> query($U_B_Q);
                 echo 'insert-success';
+                
+            }
             
             else    
                 echo 'insert-denied';   

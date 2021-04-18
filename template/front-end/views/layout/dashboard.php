@@ -10,6 +10,8 @@
 
     }
 
+    $user_info = $main -> user_info();
+    
     require_once 'logout.php';
 ?> 
 
@@ -17,8 +19,10 @@
     <h1>notelock</h1>
     <img src="../../assets/img/AA00.jpg" alt="">
     <div class="DS_header">
-        <p>kasra habibbeygi</p>
-        <span>3,450,000T</span>
+        <p><?php echo $user_info['name'] . ' ' .$user_info['lastname']?></p>
+        <span>
+            <?php echo number_format($user_info['wallet_balance']) . ' ' .  'T';?> 
+        </span>
     </div>
 
     <ul>

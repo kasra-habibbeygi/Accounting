@@ -2,7 +2,13 @@
 
     require_once '../../../../init.php';
 
-    $expenses_result = $main -> expenses();
+    $expenses_result = $main -> expenses_select('select-row');
+
+    // if(isset($_GET['del-row'])){
+
+        print_r($main -> expenses_delete('single')) ;
+
+    // }
 
 ?>
 <!DOCTYPE html>
@@ -222,9 +228,7 @@
 
             </div>
         </div>
-    </div>
-
-    
+    </div>    
 
     <script src="../../assets/js/general/jquery.js"></script>
     <script src="../../assets/js/custom/error.js"></script>
