@@ -133,6 +133,103 @@ $('.more_detail').click(function () {
 
 });
 
+// edit modal
+$('.edit_row').click(function(){
+
+    let data_id = $(this).parent().attr('data-id');
+    let query = `CW=ER&data-id=${data_id}`;
+
+    $.post('../../views/expense/e_ajax.php', query , function(result){
+
+        let info = $.parseJSON(result);
+        let temp =`
+        <form action="" method="POST" autocomplete="off">
+            <div class="input_group main">
+                <label for="E_title">Title</label>
+                <input type="text" id="E_title" value="${info.title}">
+            </div>
+            <div class="input_group main checkbox_field">
+                <div>
+                    <input class="inp-cbx" id="CB__3" type="radio" style="display: none" name="action_type" ${info.action_type == '0' ? 'checked' : ''}>
+                    <label class="cbx" for="CB__3">
+                        <span>
+                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                            </svg>
+                        </span>
+                        <span>Expense</span>
+                    </label>
+                </div>
+                <div>
+                    <input class="inp-cbx" id="CB__4" type="radio" style="display: none" name="action_type" ${info.action_type == '1' ? 'checked' : ''}>
+                    <label class="cbx" for="CB__4">
+                        <span>
+                            <svg width="12px" height="10px" viewbox="0 0 12 10">
+                                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                            </svg>
+                        </span>
+                        <span>Income</span>
+                    </label>
+                </div>
+            </div>
+            <div class="input_group main">
+                <label for="E_spend">Spend amount</label>
+                <input type="text" id="E_spend" value="${info.spend}">
+            </div>
+            <div class="input_group main chose__data">
+                <div>
+                    <label for="E_year">Year</label>
+                    <input type="text" id="E_year" value="${info.year}">
+
+                </div>
+                /
+                <div>
+                    <label for="E_month">Month</label>
+                    <input type="text" id="E_month" value="${info.month}">
+                </div>
+                /
+                <div>
+                    <label for="E_day">Day</label>
+                    <input type="text" id="E_day" value="${info.day}">
+                </div>
+            </div>
+            <div class="input_group main chose__time">
+                <div>
+                    <label for="E_hour">Hour</label>
+                    <input type="text" id="E_hour" value="${info.hour}">
+                </div>
+                :
+                <div>
+                    <label for="E_minute">Minute</label>
+                    <input type="text" id="E_minute" value="${info.min}">
+                </div>
+            </div>
+            <div class="input_group main">
+                <label for="E_description">Descriptiom <span class="optional_text">(Optional)</span></label>
+                <textarea type="text" id="E_description">${info.description}</textarea>
+            </div>
+            <div class="D_btn_group">
+                <button type="button edit_modal">Edit</button>
+                <button type="button" class="close_edit_modal">Cancel</button>
+            </div>
+        </form>
+        `
+        $('.EEM .content form').remove();
+        $('.EEM .content').append(temp);
+
+    });
+
+    $('.EEM').fadeIn();
+
+    $(document).on('click', '.close_edit_modal', function () {
+
+        $('.EEM').fadeOut();
+
+    });
+
+});
+
+
 // open delete modal
 $('.delete_row').click(function () {
 
@@ -150,7 +247,7 @@ $('.delete_row').click(function () {
 });
 
 // when user type and left spend input , comma will be added to number
-$('#spend').change(function () {
+$('#spend , #E_spend').change(function () {
 
     let num = $(this).val().replace(/,/g, '');
     $(this).val(Separator(num));

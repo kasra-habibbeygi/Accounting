@@ -185,7 +185,7 @@
                                                 <td>
                                                     <div class="option_group" data-id="<?php echo $rows['id']?>">
                                                         <button class="more_detail"><i class="fal fa-info"></i></button>
-                                                        <button><i class="fal fa-pencil-alt"></i></button>
+                                                        <button class="edit_row"><i class="fal fa-pencil-alt"></i></button>
                                                         <button class="delete_row"><i class="fal fa-trash-alt"></i></button>
                                                     </div>
                                                 </td>
@@ -229,6 +229,21 @@
             </div>
         </div>
     </div>    
+
+    <!-- edit modal -->
+    <div class="EEM">
+        <div class="edit_main_field">
+            <div class="content">
+            
+                <h3 class="h3__header">Edit Row</h3>
+                <small class="h3__small_header">You can edit your desired row</small>
+                <hr>
+
+
+
+            </div>
+        </div>
+    </div>
 
     <script src="../../assets/js/general/jquery.js"></script>
     <script src="../../assets/js/custom/error.js"></script>

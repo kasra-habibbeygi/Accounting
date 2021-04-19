@@ -87,13 +87,13 @@
         }
 
     // select expenses row and response to js for show details
-    }else if($CW = 'MI'){
+    }else if($CW == 'MI'){
 
         $data_id = (int)$main -> safePOST('data-id');
 
         $MI_select = "SELECT * FROM `expenses` WHERE id = '$data_id'";
         $MIS_send = $main -> query($MI_select);
-        $result = mysqli_fetch_assoc($MIS_send);
+        $result = $main -> getRow($MIS_send);
         $spend = $result['spend'];
         $balance = $result['wallet_balance'];
 
@@ -101,6 +101,25 @@
 
         echo json_encode($arr);
 
-    }    
+    // select expenses detail for edit modals
+    }else if($CW == 'ER') {
+
+        $data_id = $main -> safePOST('data-id');
+
+        $expenses_select_Q = "SELECT * FROM `expenses` WHERE id = '$data_id'";
+        $send_Q = $main -> query($expenses_select_Q);
+        $result = $main -> getRow($send_Q);
+        $date = explode('-' ,$result['date']);
+        $time = explode(':' , $result['time']);
+        $year = $date[0];
+        $month = $date[1];
+        $day = $date[2];
+        $hour = $time[0];
+        $min = $time[1];
+
+        $arr = array('title' => $result['title'] , 'action_type' => $result['action_type'] , 'spend' => $result['spend'] , 'year' => $year , 'month' => $month , 'day' => $day , 'hour' => $hour , 'min' => $min , 'description' => $result['description']);
+
+        echo json_encode($arr);
+    }
 
 ?>
