@@ -1,7 +1,7 @@
-import React from "react";
+import { ButtonGroup } from '../assets/styles/login/login';
 
 const Login = () => {
-  return <div>Login asdasd</div>;
+	return <ButtonGroup>Login asdasd</ButtonGroup>;
 };
 
 export default Login;
