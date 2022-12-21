@@ -1,7 +1,6 @@
 const theme = {
 	palette: {
 		blue: 'blue',
-		red: 'red',
 	},
 };
 
