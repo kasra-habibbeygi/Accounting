@@ -1,7 +1,16 @@
-const theme = {
+import { PaletteMode } from '@mui/material';
+
+const theme = (mode: PaletteMode) => ({
 	palette: {
-		blue: 'blue',
+		mode,
+		...(mode === 'light'
+			? {
+					blue: 'blue',
+			  }
+			: {
+					blue: 'red',
+			  }),
 	},
-};
+});
 
 export default theme;

@@ -1,9 +1,19 @@
 import '@emotion/react';
 
 declare module '@emotion/react' {
-	export interface Theme {
+	interface Theme {
 		palette: {
 			blue: string;
+			red: string;
+		};
+	}
+}
+
+declare module '@mui/material/styles' {
+	interface Theme {
+		palette: {
+			blue: string;
+			red: string;
 		};
 	}
 }

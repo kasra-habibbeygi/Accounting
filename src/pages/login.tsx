@@ -7,6 +7,7 @@ import { FC } from 'react';
 
 //components
 import { Input } from '../components/formgroup/input';
+import { Button } from '../components/formgroup/button';
 
 const Login: FC = () => {
 	return (
@@ -17,6 +18,7 @@ const Login: FC = () => {
 				<div className='formGroup'>
 					<Input name='test' value='kasrahabibbeygi@gmail.com' getInputValue={() => {}} />
 					<Input name='test' value='test' getInputValue={() => {}} />
+					<Button text='Login' functionality={() => {}} />
 				</div>
 			</S.LoginFormField>
 		</S.Mainfield>
