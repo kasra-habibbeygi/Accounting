@@ -21,4 +21,5 @@ InputTemp.args = {
 	icon: '',
 	placeholder: 'Enter you Email !',
 	type: 'text',
+	extraClass: '',
 };

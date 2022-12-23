@@ -76,4 +76,14 @@ export const LoginFormField = styled.div(props => ({
 			fontWeight: 'bold',
 		},
 	},
+
+	'& .auth_input': {
+		input: {
+			color: 'white',
+		},
+
+		i: {
+			top: '16px',
+		},
+	},
 }));
