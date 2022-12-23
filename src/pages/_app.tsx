@@ -4,14 +4,14 @@ import type { FC } from 'react';
 import { ThemeProvider } from '@emotion/react';
 
 //config
-import Theme from '../configs/theme';
+import { theme } from '../configs/theme';
 
 //assets
 import '../assets/styles/globals/general.css';
 import '../assets/styles/globals/fontawsome.css';
 import { createTheme } from '@mui/material/styles';
 
-const darkModeTheme = createTheme(Theme('dark'));
+const darkModeTheme = createTheme(theme('light'));
 
 const App: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
 	return (

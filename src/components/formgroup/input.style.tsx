@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const InputField = styled.div(props => ({
 	input: {
+		color: props.theme.palette.color.primary,
 		borderRadius: '500px',
 		backgroundColor: '#00000042',
 		border: 'none',

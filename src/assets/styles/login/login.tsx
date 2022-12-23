@@ -61,4 +61,19 @@ export const LoginFormField = styled.div(props => ({
 		gap: '15px',
 		marginTop: '60px',
 	},
+
+	button: {
+		marginTop: '20px',
+	},
+
+	'& .register': {
+		marginTop: '10px',
+		fontSize: '0.85rem',
+		color: props.theme.palette.color.text.secondary,
+
+		a: {
+			color: props.theme.palette.color.primary,
+			fontWeight: 'bold',
+		},
+	},
 }));
