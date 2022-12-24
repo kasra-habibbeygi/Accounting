@@ -18,7 +18,7 @@ export const theme = (mode: PaletteMode) => ({
 
 						text: {
 							primary: '#212325',
-							secondary: '#A0A6B1',
+							secondary: '#676D7C',
 							disabled: '#676D7C',
 						},
 

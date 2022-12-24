@@ -1,4 +1,4 @@
-import { withMuiTheme } from './with-mui-theme.decorator';
+import { withMuiTheme } from './mui-theme.decorator';
 
 export const parameters = {
 	actions: { argTypesRegex: '^on[A-Z].*' },
