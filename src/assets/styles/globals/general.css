@@ -6,11 +6,6 @@
     margin: 0;
 }
 
-body,
-html {
-    font-family: 'Roboto', sans-serif;
-}
-
 p {
     font-size: 1rem;
 }
@@ -21,7 +16,7 @@ table {
 
 body,
 html {
-    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -30,7 +25,14 @@ body {
     line-height: 1.5;
     position: relative;
     min-height: 100vh;
-    background-color: #F3F5F9;
+}
+
+
+html {
+    scroll-behavior: smooth;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent
 }
 
 hr {
@@ -45,16 +47,10 @@ h3,
 h4,
 h5,
 h6 {
-    margin : 0;
+    margin: 0;
     font-weight: bold;
 }
 
-html {
-    scroll-behavior: smooth;
-    line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent
-}
 
 :focus-visible {
     outline: none;
@@ -93,7 +89,7 @@ button {
     border: none;
 }
 
-input  {
+input {
     font-size: 0.9rem;
     font-weight: 300;
 }

@@ -2,14 +2,14 @@ import '../src/assets/styles/globals/general.css';
 import '../src/assets/styles/globals/fontawsome.css';
 
 import { Story } from '@storybook/react';
-import { InputProps, Input } from '../src/components/formgroup/input';
+import { ComponentTypes, Input } from '../src/components/formgroup/input';
 
 export default {
 	title: 'Form Group',
 	component: Input,
 };
 
-const Template: Story<InputProps> = args => <Input {...args} />;
+const Template: Story<ComponentTypes> = args => <Input {...args} />;
 
 export const InputTemp = Template.bind({});
 InputTemp.storyName = 'Input With Label';

@@ -14,9 +14,8 @@ import '../assets/styles/globals/fontawsome.css';
 //component
 import LayoutProvider from '../components/layout/layout.provider';
 
-const darkModeTheme = createTheme(theme('light'));
-
 const App: FC<AppProps> = ({ Component, pageProps, router }: AppProps) => {
+	const darkModeTheme = createTheme(theme('light'));
 	const notAsideMenuRequired: string[] = ['/register', '/login'];
 
 	return (

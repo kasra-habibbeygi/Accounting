@@ -1,8 +1,14 @@
-import { PaletteMode } from '@mui/material';
-
-export const theme = (mode: PaletteMode) => ({
+export const theme = (mode: 'light' | 'dark') => ({
 	palette: {
 		mode,
+		borderRadius: {
+			input: '4px',
+			container: '10px',
+			buttom: '10px',
+		},
+		padding: {
+			container: '15px',
+		},
 		...(mode === 'light'
 			? {
 					color: {
@@ -15,23 +21,16 @@ export const theme = (mode: PaletteMode) => ({
 						lightRed: '#FEEAEB',
 						lightGreen: '#EAF7E8',
 						border: '',
-
 						text: {
 							primary: '#212325',
 							secondary: '#676D7C',
 							disabled: '#676D7C',
 						},
-
 						background: {
 							primary: '#F6F8FA',
 							secondary: '#F9FCFE',
 							disabled: '#E5EAEF',
 						},
-					},
-					borderRadius: {
-						input: '4px',
-						container: '6px',
-						button: '10px',
 					},
 			  }
 			: {
@@ -45,23 +44,16 @@ export const theme = (mode: PaletteMode) => ({
 						lightRed: '#FEEAEB',
 						lightGreen: '#EAF7E8',
 						border: '',
-
 						text: {
 							primary: '#FCFCFC',
 							secondary: '#A0A6B1',
 							disabled: '#676D7C',
 						},
-
 						background: {
 							primary: '#17193E',
 							secondary: '#131130',
 							disabled: '#E5EAEF',
 						},
-					},
-					borderRadius: {
-						input: '4px',
-						container: '6px',
-						button: '10px',
 					},
 			  }),
 	},

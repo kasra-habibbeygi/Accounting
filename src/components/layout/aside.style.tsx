@@ -30,7 +30,7 @@ export const AsideItems = styled.li(props => ({
 		color: props.theme.palette.color.text.secondary,
 		width: '100%',
 		padding: '15px 20px',
-		borderRadius: props.theme.palette.borderRadius.button,
+		borderRadius: props.theme.palette.borderRadius.buttom,
 
 		'&.active': {
 			backgroundColor: props.theme.palette.color.primary,

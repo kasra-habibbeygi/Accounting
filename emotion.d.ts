@@ -30,7 +30,10 @@ declare module '@emotion/react' {
 			borderRadius: {
 				input: string;
 				container: string;
-				button: string;
+				buttom: string;
+			};
+			padding: {
+				container: string;
 			};
 		};
 	}
@@ -66,7 +69,10 @@ declare module '@mui/material/styles' {
 			borderRadius: {
 				input: string;
 				container: string;
-				button: string;
+				buttom: string;
+			};
+			padding: {
+				container: string;
 			};
 		};
 	}

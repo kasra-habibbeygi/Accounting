@@ -3,7 +3,7 @@ import { FC } from 'react';
 //assets
 import * as S from './button.style';
 
-export interface ButtonProps {
+export interface ComponentTypes {
 	text: string;
 	functionality: Function;
 	type?: 'fill' | 'outline' | 'text';
@@ -15,7 +15,7 @@ export interface ButtonProps {
 	extraClass?: string;
 }
 
-export const Button: FC<ButtonProps> = ({
+export const Button: FC<ComponentTypes> = ({
 	text,
 	functionality,
 	icon,

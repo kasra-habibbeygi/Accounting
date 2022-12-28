@@ -3,7 +3,7 @@ import { FC } from 'react';
 //assets
 import * as S from './input.style';
 
-export interface InputProps {
+export interface ComponentTypes {
 	name: string;
 	value: string;
 	getInputValue: Function;
@@ -14,7 +14,7 @@ export interface InputProps {
 	extraClass?: string;
 }
 
-export const Input: FC<InputProps> = ({ name, value, getInputValue, label, icon, placeholder, type = 'text', extraClass }) => {
+export const Input: FC<ComponentTypes> = ({ name, value, getInputValue, label, icon, placeholder, type = 'text', extraClass }) => {
 	return (
 		<S.InputField className={extraClass}>
 			<label htmlFor={name}>{label}</label>

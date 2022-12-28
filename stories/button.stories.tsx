@@ -2,14 +2,14 @@ import '../src/assets/styles/globals/general.css';
 import '../src/assets/styles/globals/fontawsome.css';
 
 import { Story } from '@storybook/react';
-import { ButtonProps, Button } from '../src/components/formgroup/button';
+import { ComponentTypes, Button } from '../src/components/formgroup/button';
 
 export default {
 	title: 'Form Group',
 	component: Button,
 };
 
-const Template: Story<ButtonProps> = args => <Button {...args} />;
+const Template: Story<ComponentTypes> = args => <Button {...args} />;
 
 export const ButtonTemp = Template.bind({});
 ButtonTemp.storyName = 'Button';

@@ -1,4 +1,4 @@
-import { withMuiTheme } from './mui-theme.decorator';
+import { StoriesThemeProvider } from './stories-theme-provider';
 
 export const parameters = {
 	actions: { argTypesRegex: '^on[A-Z].*' },
@@ -29,4 +29,4 @@ export const globalTypes = {
 	},
 };
 
-export const decorators = [withMuiTheme];
+export const decorators = [StoriesThemeProvider];

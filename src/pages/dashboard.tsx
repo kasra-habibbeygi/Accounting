@@ -1,7 +1,8 @@
-import React from 'react';
+//component
+import { Container } from '../components/template/backgorund';
 
 const Dashboard = () => {
-	return <div>asd</div>;
+	return <Container>asd</Container>;
 };
 
 export default Dashboard;
