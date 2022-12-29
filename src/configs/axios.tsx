@@ -1,7 +1,7 @@
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 import toast from 'react-hot-toast';
 
-let URL: string = 'http://localhost:3001';
+let URL: string = 'http://localhost:9090';
 
 const instance = axios.create({
 	baseURL: URL,

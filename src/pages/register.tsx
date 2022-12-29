@@ -1,5 +1,9 @@
 import { FC, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import Link from 'next/link';
+import useSWRMutation from 'swr/mutation';
+import validator from 'validator';
+import Axios from '../configs/axios';
 
 //assets
 import * as S from '../assets/styles/auth/auth';
@@ -29,6 +33,41 @@ const Register: FC = () => {
 			[e.target.name]: e.target.value,
 		});
 	};
+
+	const registerHandler = async () => {
+		if (
+			validator.isEmpty(inputValues.email) ||
+			validator.isEmpty(inputValues.password) ||
+			validator.isEmpty(inputValues.confirmPassword)
+		) {
+			toast.error('Please fill all inputs !');
+		} else if (!validator.equals(inputValues.password, inputValues.confirmPassword)) {
+			toast.error('Password and confirm password not equal !');
+		} else if (!validator.isEmail(inputValues.email)) {
+			toast.error('Email is invalid ! please try again !');
+		} else if (
+			!validator.isStrongPassword(inputValues.password, {
+				minLength: 8,
+				minUppercase: 0,
+				minNumbers: 0,
+				minSymbols: 0,
+				minLowercase: 0,
+				returnScore: false,
+			})
+		) {
+			toast.error('Your password is not strong !');
+		} else {
+			const { confirmPassword, ...filtredData } = inputValues;
+			try {
+				await trigger(filtredData);
+			} catch (e: any) {
+				console.log(e?.response.data.message);
+			}
+		}
+	};
+
+	const fetcher = (url: string, { arg }: any) => Axios.post(url, arg).then(res => res);
+	const { trigger, data } = useSWRMutation('/session', fetcher);
 
 	return (
 		<S.Mainfield background={LoginBackground.src}>
@@ -62,7 +101,7 @@ const Register: FC = () => {
 						icon='fa-light fa-fingerprint'
 						type='password'
 					/>
-					<Button text='Register' functionality={() => {}} borderRadius='circle' shadow={true} />
+					<Button text='Register' functionality={registerHandler} borderRadius='circle' shadow={true} />
 					<p className='register'>
 						Do you already have an account ? <Link href='/login'>Login Now</Link>
 					</p>
