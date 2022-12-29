@@ -44,7 +44,7 @@ const Register: FC = () => {
 		} else if (!validator.equals(inputValues.password, inputValues.confirmPassword)) {
 			toast.error('Password and confirm password not equal !');
 		} else if (!validator.isEmail(inputValues.email)) {
-			toast.error('Email is invalid ! please try again !');
+			toast.error('Email is invalid , please try again !');
 		} else if (
 			!validator.isStrongPassword(inputValues.password, {
 				minLength: 8,
@@ -67,7 +67,7 @@ const Register: FC = () => {
 	};
 
 	const fetcher = (url: string, { arg }: any) => Axios.post(url, arg).then(res => res);
-	const { trigger, data } = useSWRMutation('/session', fetcher);
+	const { trigger } = useSWRMutation('/users', fetcher);
 
 	return (
 		<S.Mainfield background={LoginBackground.src}>

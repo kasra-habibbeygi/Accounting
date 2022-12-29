@@ -1,5 +1,9 @@
 import { FC, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import Link from 'next/link';
+import useSWRMutation from 'swr/mutation';
+import validator from 'validator';
+import Axios from '../configs/axios';
 
 //assets
 import * as S from '../assets/styles/auth/auth';
@@ -28,6 +32,23 @@ const Login: FC = () => {
 		});
 	};
 
+	const loginHandler = async () => {
+		if (validator.isEmpty(inputValues.email) || validator.isEmpty(inputValues.password)) {
+			toast.error('Please fill all inputs !');
+		} else if (!validator.isEmail(inputValues.email)) {
+			toast.error('Email is invalid , please try again !');
+		} else {
+			try {
+				await trigger(inputValues);
+			} catch (e: any) {
+				console.log(e?.response.data.message);
+			}
+		}
+	};
+
+	const fetcher = (url: string, { arg }: any) => Axios.post(url, arg).then(res => res);
+	const { trigger } = useSWRMutation('/users/session', fetcher);
+
 	return (
 		<S.Mainfield background={LoginBackground.src}>
 			<S.LoginFormField>
@@ -51,7 +72,7 @@ const Login: FC = () => {
 						icon='fa-light fa-fingerprint'
 						type='password'
 					/>
-					<Button text='Login' functionality={() => {}} borderRadius='circle' shadow={true} />
+					<Button text='Login' functionality={loginHandler} borderRadius='circle' shadow={true} />
 					<p className='register'>
 						Dont have any account yet ? <Link href='/register'>Create a new one</Link>
 					</p>
