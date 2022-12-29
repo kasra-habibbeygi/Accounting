@@ -72,7 +72,7 @@ const Register: FC = () => {
 	return (
 		<S.Mainfield background={LoginBackground.src}>
 			<S.LoginFormField>
-				<h3>LOGIN TO YOUR ACCOUNT</h3>
+				<h3>CREATE NEW ACCOUNT</h3>
 				<small>Manage all daily tasks with TaskMan</small>
 				<div className='formGroup'>
 					<Input
