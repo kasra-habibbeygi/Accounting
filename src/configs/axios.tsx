@@ -1,6 +1,11 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
+type TokenType = {
+	token: string;
+	exp: number;
+};
+
 let URL: string = 'http://localhost:9090';
 
 const instance = axios.create({
@@ -13,6 +18,14 @@ instance.interceptors.request.use(async config => {
 			if (config.data[key] === '') {
 				delete config.data[key];
 			}
+		}
+	}
+
+	if (localStorage.getItem('auth_token')) {
+		const userToken: TokenType = JSON.parse(localStorage.getItem('auth_token') || '');
+
+		if (new Date(userToken.exp).getTime() > Date.now()) {
+			config!.headers!.Authorization = `Bearer ${userToken.token}`;
 		}
 	}
 

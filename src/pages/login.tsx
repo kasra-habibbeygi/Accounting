@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import useSWRMutation from 'swr/mutation';
 import validator from 'validator';
 import Axios from '../configs/axios';
@@ -20,6 +21,8 @@ type InputValuesType = {
 };
 
 const Login: FC = () => {
+	const router = useRouter();
+
 	const [inputValues, setInputValues] = useState<InputValuesType>({
 		email: '',
 		password: '',
@@ -40,14 +43,23 @@ const Login: FC = () => {
 		} else {
 			try {
 				await trigger(inputValues);
-			} catch (e: any) {
-				console.log(e?.response.data.message);
-			}
+			} catch (e) {}
 		}
 	};
 
 	const fetcher = (url: string, { arg }: any) => Axios.post(url, arg).then(res => res);
-	const { trigger } = useSWRMutation('/users/session', fetcher);
+	const { trigger, data } = useSWRMutation('/users/session', fetcher);
+
+	if (data) {
+		localStorage.setItem(
+			'auth_token',
+			JSON.stringify({
+				token: data.data.result.token,
+				exp: data.data.result.exp,
+			}),
+		);
+		router.push('/dashboard');
+	}
 
 	return (
 		<S.Mainfield background={LoginBackground.src}>
